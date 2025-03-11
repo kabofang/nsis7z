@@ -36,6 +36,8 @@ int DoExtract(LPTSTR archive, LPTSTR dir, bool overwrite, bool expath, ExtractPr
 int g_progressCallback = -1;
 int g_lastVal = -1;
 TCHAR* g_sDetails;
+int g_start_value = -1;
+int g_plugin_range = -1;
 
 int GetPercentComplete(UInt64 completedSize, UInt64 totalSize)
 {
@@ -49,6 +51,9 @@ int GetPercentComplete(UInt64 completedSize, UInt64 totalSize)
 void SimpleProgressHandler(UInt64 completedSize, UInt64 totalSize)
 {
 	int val = GetPercentComplete(completedSize, totalSize);
+	if (g_start_value != -1) {
+		val += g_start_value;
+	}
 	if (g_lastVal != val)
 		SendMessage(g_hwndProgress, PBM_SETPOS, g_lastVal = val, 0);
 }
@@ -96,6 +101,14 @@ void DetailsProgressHandler(UInt64 completedSize, UInt64 totalSize)
 
 EXTRACTFUNC(Extract)
 {
+	DoExtract(sArchive, outDir, true, true, (ExtractProgressHandler)SimpleProgressHandler);
+}
+EXTRACTFUNCEND
+
+EXTRACTFUNC(ExtractWithProgress)
+{
+	g_plugin_range = popint();
+	g_start_value = SendMessage(g_hwndProgress, PBM_GETPOS, 0, 0);
 	DoExtract(sArchive, outDir, true, true, (ExtractProgressHandler)SimpleProgressHandler);
 }
 EXTRACTFUNCEND
