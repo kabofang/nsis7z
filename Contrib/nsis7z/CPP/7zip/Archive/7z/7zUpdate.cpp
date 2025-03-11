@@ -786,6 +786,7 @@ static const char * const g_ExeExts[] =
   , "ocx"
   , "sfx"
   , "sys"
+  , "bin"
 };
 
 static bool IsExeExt(const wchar_t *ext)
