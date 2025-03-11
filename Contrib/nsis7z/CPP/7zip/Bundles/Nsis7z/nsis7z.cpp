@@ -41,7 +41,10 @@ int g_plugin_range = -1;
 
 int GetPercentComplete(UInt64 completedSize, UInt64 totalSize)
 {
-	const int nsisProgressMax = 30000;
+	if (g_plugin_range <= 0 || g_plugin_range > 20000) {
+		g_plugin_range = 10000;
+	}
+	const int nsisProgressMax = g_plugin_range;
 	int val = (int)((completedSize * nsisProgressMax) / totalSize);
 	if (val < 0) return 0;
 	if (val > nsisProgressMax) return nsisProgressMax;
@@ -53,6 +56,10 @@ void SimpleProgressHandler(UInt64 completedSize, UInt64 totalSize)
 	int val = GetPercentComplete(completedSize, totalSize);
 	if (g_start_value != -1) {
 		val += g_start_value;
+	}
+	int current = SendMessage(g_hwndProgress, PBM_GETPOS, 0, 0);
+	if (current > 25000) {
+		return;
 	}
 	if (g_lastVal != val)
 		SendMessage(g_hwndProgress, PBM_SETPOS, g_lastVal = val, 0);
@@ -109,7 +116,8 @@ EXTRACTFUNC(ExtractWithProgress)
 {
 	g_plugin_range = popint();
 	g_start_value = SendMessage(g_hwndProgress, PBM_GETPOS, 0, 0);
-	DoExtract(sArchive, outDir, true, true, (ExtractProgressHandler)SimpleProgressHandler);
+	int result = DoExtract(sArchive, outDir, true, true, (ExtractProgressHandler)SimpleProgressHandler);
+	pushint(result);
 }
 EXTRACTFUNCEND
 

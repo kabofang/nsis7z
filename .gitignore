@@ -12,16 +12,11 @@
 *.pyproj
 *.rules
 *.sdf
-*.sln
 *.sublime-project
 *.sublime-workspace
 *.suo
 *.targets
-*.user
 *.vc.opendb
-*.vcproj
-*.vcxproj
-*.vcxproj.filters
 *.vpj
 *.vpw
 *.vpwhistu
