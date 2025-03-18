@@ -23,3 +23,14 @@ void SortFileNames(const UStringVector &strings, CUIntVector &indices)
     vals[i] = i;
   indices.Sort(CompareStrings, (void *)&strings);
 }
+
+int CompareFileSizeCustom(uint64_t s1, uint64_t s2)
+{
+	constexpr UInt64 threshold = 100 * 1024 * 1024;
+	const bool isALarge = s1 > threshold;
+	const bool isBLarge = s2 > threshold;
+	if (isALarge || isBLarge) {
+		return s1 > s2 ? -1 : 1;
+	}
+	return 0;
+};

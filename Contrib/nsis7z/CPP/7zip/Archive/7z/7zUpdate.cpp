@@ -14,6 +14,8 @@
 
 #include "../Common/ItemNameUtils.h"
 
+#include "../../UI/Common/SortUtils.h"
+
 #include "7zDecode.h"
 #include "7zEncode.h"
 #include "7zFolderInStream.h"
@@ -766,6 +768,7 @@ static int CompareUpdateItems(const CRefItem *p1, const CRefItem *p2, void *para
   }
   */
   // RINOZ_COMP(a1.UpdateItem->ParentSortIndex, a2.UpdateItem->ParentSortIndex);
+  RINOK(CompareFileSizeCustom(u1.Size, u2.Size))
   RINOK(CompareFileNames(u1.Name, u2.Name));
   RINOZ_COMP(a1.UpdateItem->IndexInClient, a2.UpdateItem->IndexInClient);
   RINOZ_COMP(a1.UpdateItem->IndexInArchive, a2.UpdateItem->IndexInArchive);
