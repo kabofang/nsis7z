@@ -49,6 +49,8 @@
 #include "../../MyVersion.h"
 #endif
 
+#include "Console7zMain.h"
+
 using namespace NWindows;
 using namespace NFile;
 using namespace NCommandLineParser;
@@ -486,12 +488,34 @@ static void PrintHexId(CStdOutStream &so, UInt64 id)
   PrintStringRight(so, s, 8);
 }
 
+int Main2Custom(int numArgs, char* args[]);
 
 int Main2(
-  #ifndef _WIN32
-  int numArgs, char *args[]
-  #endif
-)
+#ifndef _WIN32
+  int numArgs, char* args[]
+#endif
+) 
+{
+#ifndef _WIN32
+  return Main2Custom(numArgs, args);
+#endif
+  return Main2Custom(0, nullptr);
+}
+
+int Main2CustomNoExcept(int numArgs, char* args[]) {
+  try {
+    Main2Custom(numArgs, args);
+    return 0;
+  }
+  catch (const std::exception&) {
+    return 1;
+  }
+  catch (...) {
+    return 1;
+  }
+}
+
+int Main2Custom(int numArgs, char *args[])
 {
   #if defined(_WIN32) && !defined(UNDER_CE)
   SetFileApisToOEM();
@@ -500,7 +524,11 @@ int Main2(
   UStringVector commandStrings;
   
   #ifdef _WIN32
-  NCommandLineParser::SplitCommandLine(GetCommandLineW(), commandStrings);
+  if (!numArgs) {
+    NCommandLineParser::SplitCommandLine(GetCommandLineW(), commandStrings);
+  } else {
+    NCommandLineParser::SplitCommandLine((LPWSTR)args, commandStrings);
+  }
   #else
   GetArguments(numArgs, args, commandStrings);
   #endif
