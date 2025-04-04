@@ -1,4 +1,4 @@
-// Main.cpp
+﻿// Main.cpp
 
 #include "StdAfx.h"
 
@@ -49,7 +49,7 @@ using namespace NWindows;
 using namespace NFile;
 using namespace NCommandLineParser;
 
-HINSTANCE g_hInstance = 0;
+// HINSTANCE g_hInstance = 0;
 
 // ---------------------------
 // exception messages
