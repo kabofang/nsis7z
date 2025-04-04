@@ -51,7 +51,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v141</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Unicode|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -72,7 +72,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Unicode|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v141</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
@@ -87,7 +87,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v141</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -208,6 +208,7 @@
       <PreprocessorDefinitions>NDEBUG;WIN32;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AssemblerOutput>AssemblyAndMachineCode</AssemblerOutput>
       <CallingConvention>FastCall</CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Midl>
       <TypeLibraryName>.\Release\Alone.tlb</TypeLibraryName>
@@ -342,6 +343,7 @@
       <PreprocessorDefinitions>_NO_CRYPTO;NDEBUG;UNICODE;WIN32;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CallingConvention>FastCall</CallingConvention>
+      <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
     <Midl>
       <TypeLibraryName>.\ReleaseU\Alone.tlb</TypeLibraryName>
@@ -359,7 +361,7 @@
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -443,6 +445,7 @@
     <ClInclude Include="..\..\..\..\C\Compiler.h" />
     <ClInclude Include="..\..\..\..\C\CpuArch.h" />
     <ClInclude Include="..\..\..\..\C\Delta.h" />
+    <ClInclude Include="..\..\..\..\C\DllSecur.h" />
     <ClInclude Include="..\..\..\..\C\LzFind.h" />
     <ClInclude Include="..\..\..\..\C\LzFindMt.h" />
     <ClInclude Include="..\..\..\..\C\LzHash.h" />
@@ -541,9 +544,14 @@
     <ClInclude Include="..\..\UI\Common\IFileExtractCallback.h" />
     <ClInclude Include="..\..\UI\Common\StdAfx.h" />
     <ClInclude Include="..\..\UI\Common\ZipRegistry.h" />
+    <ClInclude Include="..\..\UI\Console\BenchCon.h" />
     <ClInclude Include="..\..\UI\Console\ConsoleClose.h" />
+    <ClInclude Include="..\..\UI\Console\ExtractCallbackConsole.h" />
+    <ClInclude Include="..\..\UI\Console\HashCon.h" />
+    <ClInclude Include="..\..\UI\Console\List.h" />
     <ClInclude Include="..\..\UI\Console\OpenCallbackConsole.h" />
     <ClInclude Include="..\..\UI\Console\PercentPrinter.h" />
+    <ClInclude Include="..\..\UI\Console\UpdateCallbackConsole.h" />
     <ClInclude Include="..\..\UI\Console\UserInputUtils.h" />
     <ClInclude Include="..\..\UI\NSIS\ExtractCallbackConsole.h" />
     <ClInclude Include="..\..\UI\NSIS\NSISBreak.h" />
@@ -635,6 +643,7 @@
     <ClCompile Include="..\..\..\..\C\BraIA64.c" />
     <ClCompile Include="..\..\..\..\C\CpuArch.c" />
     <ClCompile Include="..\..\..\..\C\Delta.c" />
+    <ClCompile Include="..\..\..\..\C\DllSecur.c" />
     <ClCompile Include="..\..\..\..\C\LzFind.c" />
     <ClCompile Include="..\..\..\..\C\LzFindMt.c" />
     <ClCompile Include="..\..\..\..\C\Lzma2Dec.c" />
@@ -734,13 +743,20 @@
     <ClCompile Include="..\..\Compress\XzEncoder.cpp" />
     <ClCompile Include="..\..\UI\Common\ArchiveName.cpp" />
     <ClCompile Include="..\..\UI\Common\HashCalc.cpp" />
+    <ClCompile Include="..\..\UI\Console\BenchCon.cpp" />
     <ClCompile Include="..\..\UI\Console\ConsoleClose.cpp" />
+    <ClCompile Include="..\..\UI\Console\ExtractCallbackConsole.cpp" />
+    <ClCompile Include="..\..\UI\Console\HashCon.cpp" />
+    <ClCompile Include="..\..\UI\Console\List.cpp" />
+    <ClCompile Include="..\..\UI\Console\Main.cpp" />
+    <ClCompile Include="..\..\UI\Console\MainAr.cpp" />
     <ClCompile Include="..\..\UI\Console\OpenCallbackConsole.cpp" />
     <ClCompile Include="..\..\UI\Console\PercentPrinter.cpp" />
+    <ClCompile Include="..\..\UI\Console\UpdateCallbackConsole.cpp" />
     <ClCompile Include="..\..\UI\Console\UserInputUtils.cpp" />
     <ClCompile Include="..\..\UI\NSIS\ExtractCallbackConsole.cpp" />
-    <ClCompile Include="..\..\UI\NSIS\Main.cpp" />
-    <ClCompile Include="..\..\UI\NSIS\MainAr.cpp" />
+    <ClCompile Include="..\..\UI\NSIS\MainNsis7z.cpp" />
+    <ClCompile Include="..\..\UI\NSIS\MainArNsis7z.cpp" />
     <ClCompile Include="..\..\UI\NSIS\NSISBreak.cpp" />
     <ClCompile Include="..\..\UI\NSIS\UserInputUtils2.cpp" />
     <ClCompile Include="nsis7z.cpp" />

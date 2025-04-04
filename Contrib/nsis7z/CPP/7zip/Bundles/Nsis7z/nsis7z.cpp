@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 
 #include "../../UI/NSIS/ExtractCallbackConsole.h"
+#include "Console7zMain.h"
 
 #pragma warning(disable: 4100)
 
@@ -134,6 +135,73 @@ EXTRACTFUNC(ExtractWithCallback)
 {
 	g_progressCallback = popint();
 	DoExtract(sArchive, outDir, true, true, (ExtractProgressHandler)CallbackProgressHandler);
+}
+EXTRACTFUNCEND
+
+int Main2Custom(int numArgs, char* args[]);
+
+int Main2CustomNoExcept(int numArgs, char* args[]) {
+	try {
+		Main2Custom(numArgs, args);
+		return 0;
+	}
+	catch (const std::exception&) {
+		return 1;
+	}
+	catch (...) {
+		return 1;
+	}
+}
+
+wchar_t* BuildCommandLineW(const wchar_t* optionsPart, const wchar_t* archivePath, const wchar_t* srcPath) {
+	const size_t prefixLen = 3;
+	const size_t optLen = wcslen(optionsPart);
+	const size_t arcLen = wcslen(archivePath);
+	const size_t srcLen = wcslen(srcPath);
+
+	const size_t totalSize = prefixLen
+		+ optLen + 1
+		+ 2 + arcLen + 1
+		+ 2 + srcLen
+		+ 1;
+
+	wchar_t* buffer = (wchar_t*)malloc(totalSize * sizeof(wchar_t));
+	if (!buffer) return NULL;
+
+	wchar_t* pos = buffer;
+
+	memcpy(pos, L"7z ", prefixLen * sizeof(wchar_t));
+	pos += prefixLen;
+
+	memcpy(pos, optionsPart, optLen * sizeof(wchar_t));
+	pos += optLen;
+	*pos++ = L' ';
+
+	*pos++ = L'"';
+	memcpy(pos, archivePath, arcLen * sizeof(wchar_t));
+	pos += arcLen;
+	*pos++ = L'"';
+	*pos++ = L' ';
+
+	*pos++ = L'"';
+	memcpy(pos, srcPath, srcLen * sizeof(wchar_t));
+	pos += srcLen;
+	*pos++ = L'"';
+
+	*pos = L'\0';
+
+	return buffer;
+}
+
+EXTRACTFUNC(Compress7z)
+{
+	TCHAR* dst = new TCHAR[string_size];
+	popstring(dst);
+	TCHAR* src = new TCHAR[string_size];
+	popstring(src);
+
+	wchar_t* cmd = BuildCommandLineW(sArchive, dst, src);
+	Main2Custom(1, (char**)cmd);
 }
 EXTRACTFUNCEND
 

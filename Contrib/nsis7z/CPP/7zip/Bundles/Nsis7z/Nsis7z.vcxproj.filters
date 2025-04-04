@@ -604,6 +604,24 @@
     <ClInclude Include="..\..\UI\NSIS\UserInputUtils2.h">
       <Filter>NSIS\UI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\UI\Console\ExtractCallbackConsole.h">
+      <Filter>CPP\7zip\UI\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\UI\Console\UpdateCallbackConsole.h">
+      <Filter>CPP\7zip\UI\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\UI\Console\HashCon.h">
+      <Filter>CPP\7zip\UI\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\UI\Console\List.h">
+      <Filter>CPP\7zip\UI\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\UI\Console\BenchCon.h">
+      <Filter>CPP\7zip\UI\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\C\DllSecur.h">
+      <Filter>C</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Windows\DLL.cpp">
@@ -753,10 +771,10 @@
     <ClCompile Include="..\..\UI\NSIS\ExtractCallbackConsole.cpp">
       <Filter>NSIS\UI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\UI\NSIS\Main.cpp">
+    <ClCompile Include="..\..\UI\NSIS\MainNsis7z.cpp">
       <Filter>NSIS\UI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\UI\NSIS\MainAr.cpp">
+    <ClCompile Include="..\..\UI\NSIS\MainArNsis7z.cpp">
       <Filter>NSIS\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\UI\NSIS\NSISBreak.cpp">
@@ -1127,6 +1145,30 @@
     </ClCompile>
     <ClCompile Include="StdAfx2.cpp">
       <Filter>NSIS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\UI\Console\ExtractCallbackConsole.cpp">
+      <Filter>CPP\7zip\UI\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\UI\Console\UpdateCallbackConsole.cpp">
+      <Filter>CPP\7zip\UI\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\UI\Console\HashCon.cpp">
+      <Filter>CPP\7zip\UI\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\UI\Console\List.cpp">
+      <Filter>CPP\7zip\UI\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\UI\Console\MainAr.cpp">
+      <Filter>CPP\7zip\UI\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\UI\Console\Main.cpp">
+      <Filter>CPP\7zip\UI\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\UI\Console\BenchCon.cpp">
+      <Filter>CPP\7zip\UI\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\C\DllSecur.c">
+      <Filter>C</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
