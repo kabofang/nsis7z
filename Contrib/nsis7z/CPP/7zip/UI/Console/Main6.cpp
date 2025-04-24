@@ -53,9 +53,9 @@ using namespace NWindows;
 using namespace NFile;
 using namespace NCommandLineParser;
 
-#ifdef _WIN32
-HINSTANCE g_hInstance = 0;
-#endif
+//#ifdef _WIN32
+//HINSTANCE g_hInstance = 0;
+//#endif
 
 extern CStdOutStream *g_StdStream;
 extern CStdOutStream *g_ErrStream;

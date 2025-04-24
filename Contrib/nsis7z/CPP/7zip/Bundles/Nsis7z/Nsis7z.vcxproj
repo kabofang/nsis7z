@@ -545,7 +545,6 @@
     <ClInclude Include="..\..\UI\Console\OpenCallbackConsole.h" />
     <ClInclude Include="..\..\UI\Console\PercentPrinter.h" />
     <ClInclude Include="..\..\UI\Console\UserInputUtils.h" />
-    <ClInclude Include="..\..\UI\NSIS\ExtractCallbackConsole.h" />
     <ClInclude Include="..\..\UI\NSIS\NSISBreak.h" />
     <ClInclude Include="..\..\UI\NSIS\StdAfx.h" />
     <ClInclude Include="..\..\UI\NSIS\UserInputUtils2.h" />
@@ -738,9 +737,9 @@
     <ClCompile Include="..\..\UI\Console\OpenCallbackConsole.cpp" />
     <ClCompile Include="..\..\UI\Console\PercentPrinter.cpp" />
     <ClCompile Include="..\..\UI\Console\UserInputUtils.cpp" />
-    <ClCompile Include="..\..\UI\NSIS\ExtractCallbackConsole.cpp" />
-    <ClCompile Include="..\..\UI\NSIS\Main.cpp" />
-    <ClCompile Include="..\..\UI\NSIS\MainAr.cpp" />
+    <ClCompile Include="..\..\UI\NSIS\ExtractCallbackConsoleNsis7z.cpp" />
+    <ClCompile Include="..\..\UI\NSIS\MainNsis7z.cpp" />
+    <ClCompile Include="..\..\UI\NSIS\MainArNsis7z.cpp" />
     <ClCompile Include="..\..\UI\NSIS\NSISBreak.cpp" />
     <ClCompile Include="..\..\UI\NSIS\UserInputUtils2.cpp" />
     <ClCompile Include="nsis7z.cpp" />

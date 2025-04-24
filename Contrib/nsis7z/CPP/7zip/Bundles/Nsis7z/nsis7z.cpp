@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 
-#include "../../UI/NSIS/ExtractCallbackConsole.h"
+#include "../../UI/NSIS/ExtractCallbackConsoleNsis7z.h"
 
 #pragma warning(disable: 4100)
 

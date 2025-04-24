@@ -1844,7 +1844,7 @@
     <ClCompile Include="..\..\UI\Console\ExtractCallbackConsole.cpp" />
     <ClCompile Include="..\..\UI\Console\HashCon.cpp" />
     <ClCompile Include="..\..\UI\Console\List.cpp" />
-    <ClCompile Include="..\..\UI\Console\Main.cpp" />
+    <ClCompile Include="..\..\UI\Console\Main6.cpp" />
     <ClCompile Include="..\..\UI\Console\MainAr.cpp" />
     <ClCompile Include="..\..\UI\Console\OpenCallbackConsole.cpp" />
     <ClCompile Include="..\..\UI\Console\PercentPrinter.cpp" />

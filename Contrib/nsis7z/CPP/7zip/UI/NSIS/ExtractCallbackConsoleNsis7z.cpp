@@ -20,6 +20,7 @@
 #include "../../Common/FilePathAutoRename.h"
 
 #include "../Common/ExtractingFilePath.h"
+#include "../../../Windows/NtCheck.h"
 
 using namespace NWindows;
 using namespace NFile;

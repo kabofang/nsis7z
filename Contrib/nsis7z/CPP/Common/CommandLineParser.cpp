@@ -4,6 +4,8 @@
 
 #include "CommandLineParser.h"
 
+HINSTANCE g_hInstance;
+
 namespace NCommandLineParser {
 
 bool SplitCommandLine(const UString &src, UString &dest1, UString &dest2)
