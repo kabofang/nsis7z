@@ -3,7 +3,7 @@
 #ifndef __USERINPUTUTILS_H
 #define __USERINPUTUTILS_H
 
-#include "Common/StdOutStream.h"
+#include "../../../Common/StdOutStream.h"
 
 namespace NUserAnswerMode {
 

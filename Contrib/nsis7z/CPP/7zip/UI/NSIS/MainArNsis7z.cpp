@@ -6,16 +6,16 @@
 
 #include "../../../Common/Common.h"
 
-#include "Windows/ErrorMsg.h"
+#include "../../../Windows/ErrorMsg.h"
 
-#include "Common/StdOutStream.h"
-#include "Common/NewHandler.h"
-#include "Common/MyException.h"
-#include "Common/StringConvert.h"
+#include "../../../Common/StdOutStream.h"
+#include "../../../Common/NewHandler.h"
+#include "../../../Common/MyException.h"
+#include "../../../Common/StringConvert.h"
 
 #include "../Common/ExitCode.h"
 #include "../Common/ArchiveCommandLine.h"
-#include "ExtractCallbackConsole.h"
+#include "ExtractCallbackConsoleNsis7z.h"
 #include "NSISBreak.h"
 
 using namespace NWindows;
@@ -25,7 +25,7 @@ using namespace NWindows;
 #pragma warning(disable : 4996)
 
 #ifndef _UNICODE
-bool g_IsNT = false;
+extern bool g_IsNT;
 #endif
 #if !defined(_UNICODE) || !defined(_WIN64)
 static inline bool IsItWindowsNT()

@@ -4,6 +4,5 @@
 #define __STDAFX_H
 
 #include <Windows.h>
-#include "7zip/Bundles/Nsis7z/pluginapi.h"
-
+#include "../../../Common/Common.h"
 #endif

@@ -3,8 +3,8 @@
 #ifndef __EXTRACTCALLBACKCONSOLE_H
 #define __EXTRACTCALLBACKCONSOLE_H
 
-#include "Common/MyString.h"
-#include "Common/StdOutStream.h"
+#include "../../../Common/MyString.h"
+#include "../../../Common/StdOutStream.h"
 #include "../../Common/FileStreams.h"
 #include "../../IPassword.h"
 #include "../../Archive/IArchive.h"
@@ -13,7 +13,7 @@
 
 typedef void (*ExtractProgressHandler)(UInt64 completedSize, UInt64 totalSize);
 
-class CExtractCallbackConsole:
+class ExtractCallbackConsoleNsis7z:
   public IExtractCallbackUI,
   #ifndef _NO_CRYPTO
   public ICryptoGetTextPassword,

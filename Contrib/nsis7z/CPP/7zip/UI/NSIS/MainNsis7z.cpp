@@ -1,23 +1,23 @@
-// Main.cpp
+﻿// Main.cpp
 
 #include "StdAfx.h"
 
 #include "../../../Common/Common.h"
-#include "Common/MyInitGuid.h"
+#include "../../../Common/MyInitGuid.h"
 
-#include "Common/CommandLineParser.h"
-#include "Common/MyException.h"
-#include "Common/IntToString.h"
-#include "Common/StdOutStream.h"
-#include "Common/StringConvert.h"
-#include "Common/StringToInt.h"
+#include "../../../Common/CommandLineParser.h"
+#include "../../../Common/MyException.h"
+#include "../../../Common/IntToString.h"
+#include "../../../Common/StdOutStream.h"
+#include "../../../Common/StringConvert.h"
+#include "../../../Common/StringToInt.h"
 
-#include "Windows/FileDir.h"
-#include "Windows/FileName.h"
-#include "Windows/Defs.h"
-#include "Windows/ErrorMsg.h"
+#include "../../../Windows/FileDir.h"
+#include "../../../Windows/FileName.h"
+#include "../../../Windows/Defs.h"
+#include "../../../Windows/ErrorMsg.h"
 #ifdef _WIN32
-#include "Windows/MemoryLock.h"
+#include "../../../Windows/MemoryLock.h"
 #endif
 
 #include "../../IPassword.h"
@@ -34,7 +34,7 @@
 //#include "../../Compress/LZMA_Alone/LzmaBenchCon.h"
 
 #include "../Console/OpenCallbackConsole.h"
-#include "ExtractCallbackConsole.h"
+#include "ExtractCallbackConsoleNsis7z.h"
 
 #include "../../MyVersion.h"
 
@@ -49,7 +49,7 @@ using namespace NWindows;
 using namespace NFile;
 using namespace NCommandLineParser;
 
-HINSTANCE g_hInstance = 0;
+// HINSTANCE g_hInstance = 0;
 
 // ---------------------------
 // exception messages
@@ -120,7 +120,7 @@ int DoExtractArchive(UString archive, UString targetDir, bool overwrite, bool ex
 		SwitchFileAPIEncoding(bApisAreAnsi);
 #endif
 
-	CExtractCallbackConsole *ecs = new CExtractCallbackConsole();
+	ExtractCallbackConsoleNsis7z*ecs = new ExtractCallbackConsoleNsis7z();
 	CMyComPtr<IFolderArchiveExtractCallback> extractCallback = ecs;
 	ecs->ProgressHandler = epc;
 	ecs->Init();

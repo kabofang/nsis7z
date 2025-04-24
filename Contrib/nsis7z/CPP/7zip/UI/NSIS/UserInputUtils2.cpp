@@ -2,8 +2,8 @@
 
 #include "StdAfx.h"
 
-#include "Common/StdInStream.h"
-#include "Common/StringConvert.h"
+#include "../../../Common/StdInStream.h"
+#include "../../../Common/StringConvert.h"
 
 #include "UserInputUtils2.h"
 

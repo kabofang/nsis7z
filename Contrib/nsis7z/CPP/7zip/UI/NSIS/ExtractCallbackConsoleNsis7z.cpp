@@ -3,19 +3,19 @@
 #include "StdAfx.h"
 
 #include "../../../Common/Common.h"
-#include "ExtractCallbackConsole.h"
+#include "ExtractCallbackConsoleNsis7z.h"
 #include "UserInputUtils2.h"
 #include "NSISBreak.h"
 
-#include "Common/Wildcard.h"
+#include "../../../Common/Wildcard.h"
 
-#include "Windows/FileDir.h"
-#include "Windows/FileFind.h"
-#include "Windows/TimeUtils.h"
-#include "Windows/Defs.h"
-#include "Windows/PropVariant.h"
-#include "Windows/ErrorMsg.h"
-#include "Windows/PropVariantConv.h"
+#include "../../../Windows/FileDir.h"
+#include "../../../Windows/FileFind.h"
+#include "../../../Windows/TimeUtils.h"
+#include "../../../Windows/Defs.h"
+#include "../../../Windows/PropVariant.h"
+#include "../../../Windows/ErrorMsg.h"
+#include "../../../Windows/PropVariantConv.h"
 
 #include "../../Common/FilePathAutoRename.h"
 
@@ -27,7 +27,7 @@ using namespace NDir;
 
 extern HWND g_hwndProgress;
 
-void CExtractCallbackConsole::UpdateProgress()
+void ExtractCallbackConsoleNsis7z::UpdateProgress()
 {
 	if (ProgressHandler != NULL)
 	{
@@ -38,7 +38,7 @@ void CExtractCallbackConsole::UpdateProgress()
 	}
 }
 
-STDMETHODIMP CExtractCallbackConsole::SetTotal(UInt64 val)
+STDMETHODIMP ExtractCallbackConsoleNsis7z::SetTotal(UInt64 val)
 {
   totalSize = val;
   UpdateProgress();
@@ -47,7 +47,7 @@ STDMETHODIMP CExtractCallbackConsole::SetTotal(UInt64 val)
   return S_OK;
 }
 
-STDMETHODIMP CExtractCallbackConsole::SetCompleted(const UInt64 *val)
+STDMETHODIMP ExtractCallbackConsoleNsis7z::SetCompleted(const UInt64 *val)
 {
   completedSize = *val;
   UpdateProgress();
@@ -56,7 +56,7 @@ STDMETHODIMP CExtractCallbackConsole::SetCompleted(const UInt64 *val)
   return S_OK;
 }
 
-STDMETHODIMP CExtractCallbackConsole::AskOverwrite(
+STDMETHODIMP ExtractCallbackConsoleNsis7z::AskOverwrite(
     const wchar_t *existName, const FILETIME *, const UInt64 *,
     const wchar_t *newName, const FILETIME *, const UInt64 *,
     Int32 *answer)
@@ -65,19 +65,19 @@ STDMETHODIMP CExtractCallbackConsole::AskOverwrite(
   return S_OK;
 }
 
-STDMETHODIMP CExtractCallbackConsole::PrepareOperation(const wchar_t *name, Int32 isFolder, Int32 askExtractMode, const UInt64 *position)
+STDMETHODIMP ExtractCallbackConsoleNsis7z::PrepareOperation(const wchar_t *name, Int32 isFolder, Int32 askExtractMode, const UInt64 *position)
 {
   return S_OK;
 }
 
-STDMETHODIMP CExtractCallbackConsole::MessageError(const wchar_t *message)
+STDMETHODIMP ExtractCallbackConsoleNsis7z::MessageError(const wchar_t *message)
 {
   NumFileErrorsInCurrentArchive++;
   NumFileErrors++;
   return S_OK;
 }
 
-STDMETHODIMP CExtractCallbackConsole::SetOperationResult(Int32 opRes, Int32 encrypted)
+STDMETHODIMP ExtractCallbackConsoleNsis7z::SetOperationResult(Int32 opRes, Int32 encrypted)
 {
   switch(opRes)
   {
@@ -95,14 +95,14 @@ STDMETHODIMP CExtractCallbackConsole::SetOperationResult(Int32 opRes, Int32 encr
 
 #ifndef _NO_CRYPTO
 
-HRESULT CExtractCallbackConsole::SetPassword(const UString &password)
+HRESULT ExtractCallbackConsoleNsis7z::SetPassword(const UString &password)
 {
   PasswordIsDefined = true;
   Password = password;
   return S_OK;
 }
 
-STDMETHODIMP CExtractCallbackConsole::CryptoGetTextPassword(BSTR *password)
+STDMETHODIMP ExtractCallbackConsoleNsis7z::CryptoGetTextPassword(BSTR *password)
 {
   if (!PasswordIsDefined)
   {
@@ -114,14 +114,14 @@ STDMETHODIMP CExtractCallbackConsole::CryptoGetTextPassword(BSTR *password)
 
 #endif
 
-HRESULT CExtractCallbackConsole::BeforeOpen(const wchar_t *name, bool testMode)
+HRESULT ExtractCallbackConsoleNsis7z::BeforeOpen(const wchar_t *name, bool testMode)
 {
   NumArchives++;
   NumFileErrorsInCurrentArchive = 0;
   return S_OK;
 }
 
-HRESULT CExtractCallbackConsole::OpenResult(const CCodecs *codecs, const CArchiveLink &arcLink, const wchar_t *name, HRESULT result)
+HRESULT ExtractCallbackConsoleNsis7z::OpenResult(const CCodecs *codecs, const CArchiveLink &arcLink, const wchar_t *name, HRESULT result)
 {
   if (result != S_OK)
   {
@@ -130,12 +130,12 @@ HRESULT CExtractCallbackConsole::OpenResult(const CCodecs *codecs, const CArchiv
   return S_OK;
 }
   
-HRESULT CExtractCallbackConsole::ThereAreNoFiles()
+HRESULT ExtractCallbackConsoleNsis7z::ThereAreNoFiles()
 {
   return S_OK;
 }
 
-HRESULT CExtractCallbackConsole::ExtractResult(HRESULT result)
+HRESULT ExtractCallbackConsoleNsis7z::ExtractResult(HRESULT result)
 {
   if (result == S_OK)
   {
